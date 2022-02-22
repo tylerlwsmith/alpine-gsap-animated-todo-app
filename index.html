@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Alpine.js animated todo app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div id="app" class="container" x-data="todoData()">
+      <h1 x-ref="heading" x-text="pageTitle"></h1>
+
+      <form class="todo-form" x-on:submit.prevent="addTodo">
+        <input
+          type="text"
+          class="todo-form__input"
+          x-model="newTodo"
+          ref="newTodo"
+          x-init="$el.focus()"
+        />
+        <button :disabled="newTodo.length === 0">
+          Create Todo
+        </button>
+      </form>
+
+      <template x-if="todos.length === 0">
+        <div
+          x-ref="empty-message"
+          x-init="        
+            gsap.fromTo(
+              $el,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.2 }
+            );
+          "
+        >
+          Use the form above to add a todo.
+        </div>
+      </template>
+
+      <template x-if="todos.length">
+        <ul class="todo-list">
+          <template x-for="(todo, index) in todos" :key="index">
+            <li class="todo" x-bind:data-todo-index="index" x-init="loadHidden">
+              <div class="todo__inner">
+                <span class="todo__text" x-text="todo"></span>
+                <button
+                  class="todo__complete-button"
+                  x-on:click="removeTodo(index)"
+                >
+                  <span>&times;</span>
+                </button>
+              </div>
+            </li>
+          </template>
+        </ul>
+      </template>
+    </div>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>

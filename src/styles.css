@@ -1,0 +1,58 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  max-width: 20em;
+}
+
+.todo-form {
+  display: flex;
+  padding-bottom: 1em;
+}
+
+.todo-form__input {
+  flex-basis: auto;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todo {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.todo__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 0.5em;
+}
+
+.todo__text {
+  padding-right: 0.5em;
+}
+
+.todo__complete-button {
+  display: flex;
+  line-height: 1;
+  align-items: flex;
+  justify-content: center;
+}
